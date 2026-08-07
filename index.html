@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Admin Panel</title>
+<title>Printex Admin Panel</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-<!-- Login -->
+<!-- Login Page -->
 
-<section id="login" class="screen active">
+<section id="loginPage" class="login-page">
 
-<div class="card">
+<div class="login-box">
 
-<h2>Admin Login</h2>
+<h1>Printex Admin</h1>
+
+<p>Login to continue</p>
 
 <input
 type="email"
-id="adminEmail"
+id="email"
 placeholder="Admin Email">
 
 <input
 type="password"
-id="adminPassword"
+id="password"
 placeholder="Password">
 
-<button id="adminLoginBtn">
+<button id="loginBtn">
 
 Login
 
@@ -43,47 +51,139 @@ Login
 
 <!-- Dashboard -->
 
-<section id="dashboard" class="screen">
+<section id="dashboard" class="dashboard">
 
-<header>
+<!-- Sidebar -->
 
-<h2>Dashboard</h2>
+<div class="sidebar">
 
-<button id="logoutBtn">
+<div class="logo">
 
-Logout
+<h2>Printex</h2>
 
-</button>
+</div>
 
-</header>
+<ul>
 
-<div class="menu">
+<li class="active">
 
-<button id="courseBtn">
+<i class="fa-solid fa-house"></i>
+
+Dashboard
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-book"></i>
 
 Courses
 
-</button>
+</li>
 
-<button id="ordersBtn">
+<li>
+
+<i class="fa-solid fa-cart-shopping"></i>
 
 Orders
 
-</button>
+</li>
 
-<button id="usersBtn">
+<li>
 
-Users
+<i class="fa-solid fa-users"></i>
 
-</button>
+Customers
+
+</li>
+
+<li>
+
+<i class="fa-solid fa-gear"></i>
+
+Settings
+
+</li>
+
+<li id="logoutBtn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<!-- Header -->
+
+<div class="topbar">
+
+<h2>Dashboard</h2>
+
+<div class="admin">
+
+<img src="assets/avatar.png">
+
+<span>Admin</span>
+
+</div>
+
+</div>
+
+<!-- Cards -->
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Total Courses</h3>
+
+<h1 id="courseCount">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Total Orders</h3>
+
+<h1 id="orderCount">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Pending</h3>
+
+<h1 id="pendingCount">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Revenue</h3>
+
+<h1 id="revenue">
+
+₹0
+
+</h1>
+
+</div>
 
 </div>
 
 <!-- Add Course -->
 
-<div class="card">
+<div class="box">
 
-<h3>Add Course</h3>
+<h2>Add New Course</h2>
 
 <input
 id="courseName"
@@ -91,7 +191,7 @@ placeholder="Course Name">
 
 <input
 id="coursePrice"
-placeholder="Price">
+placeholder="Course Price">
 
 <input
 id="courseLink"
@@ -101,7 +201,7 @@ placeholder="Google Drive Link">
 type="file"
 id="courseImage">
 
-<button id="addCourse">
+<button id="addCourseBtn">
 
 Add Course
 
@@ -111,13 +211,15 @@ Add Course
 
 <!-- Orders -->
 
-<div class="card">
+<div class="box">
 
-<h3>Orders</h3>
+<h2>Recent Orders</h2>
 
-<div id="ordersList">
+<div id="orders">
 
-No Orders
+<!-- Orders From Firebase -->
+
+</div>
 
 </div>
 
@@ -128,4 +230,5 @@ No Orders
 <script type="module" src="app.js"></script>
 
 </body>
+
 </html>
