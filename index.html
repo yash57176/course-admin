@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- Login -->
+
+<section id="login" class="screen active">
+
+<div class="card">
+
+<h2>Admin Login</h2>
+
+<input
+type="email"
+id="adminEmail"
+placeholder="Admin Email">
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Password">
+
+<button id="adminLoginBtn">
+
+Login
+
+</button>
+
+</div>
+
+</section>
+
+<!-- Dashboard -->
+
+<section id="dashboard" class="screen">
+
+<header>
+
+<h2>Dashboard</h2>
+
+<button id="logoutBtn">
+
+Logout
+
+</button>
+
+</header>
+
+<div class="menu">
+
+<button id="courseBtn">
+
+Courses
+
+</button>
+
+<button id="ordersBtn">
+
+Orders
+
+</button>
+
+<button id="usersBtn">
+
+Users
+
+</button>
+
+</div>
+
+<!-- Add Course -->
+
+<div class="card">
+
+<h3>Add Course</h3>
+
+<input
+id="courseName"
+placeholder="Course Name">
+
+<input
+id="coursePrice"
+placeholder="Price">
+
+<input
+id="courseLink"
+placeholder="Google Drive Link">
+
+<input
+type="file"
+id="courseImage">
+
+<button id="addCourse">
+
+Add Course
+
+</button>
+
+</div>
+
+<!-- Orders -->
+
+<div class="card">
+
+<h3>Orders</h3>
+
+<div id="ordersList">
+
+No Orders
+
+</div>
+
+</div>
+
+</section>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
