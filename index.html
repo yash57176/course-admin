@@ -1,234 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Printex Admin Panel</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Platform - Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- Login Page -->
-
-<section id="loginPage" class="login-page">
-
-<div class="login-box">
-
-<h1>Printex Admin</h1>
-
-<p>Login to continue</p>
-
-<input
-type="email"
-id="email"
-placeholder="Admin Email">
-
-<input
-type="password"
-id="password"
-placeholder="Password">
-
-<button id="loginBtn">
-
-Login
-
-</button>
-
-</div>
-
-</section>
-
-<!-- Dashboard -->
-
-<section id="dashboard" class="dashboard">
-
-<!-- Sidebar -->
-
-<div class="sidebar">
-
-<div class="logo">
-
-<h2>Printex</h2>
-
-</div>
-
-<ul>
-
-<li class="active">
-
-<i class="fa-solid fa-house"></i>
-
-Dashboard
-
-</li>
-
-<li>
-
-<i class="fa-solid fa-book"></i>
-
-Courses
-
-</li>
-
-<li>
-
-<i class="fa-solid fa-cart-shopping"></i>
-
-Orders
-
-</li>
-
-<li>
-
-<i class="fa-solid fa-users"></i>
-
-Customers
-
-</li>
-
-<li>
-
-<i class="fa-solid fa-gear"></i>
-
-Settings
-
-</li>
-
-<li id="logoutBtn">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Logout
-
-</li>
-
-</ul>
-
-</div>
-
-<!-- Main -->
-
-<div class="main">
-
-<!-- Header -->
-
-<div class="topbar">
-
-<h2>Dashboard</h2>
-
-<div class="admin">
-
-<img src="assets/avatar.png">
-
-<span>Admin</span>
-
-</div>
-
-</div>
-
-<!-- Cards -->
-
-<div class="cards">
-
-<div class="card">
-
-<h3>Total Courses</h3>
-
-<h1 id="courseCount">0</h1>
-
-</div>
-
-<div class="card">
-
-<h3>Total Orders</h3>
-
-<h1 id="orderCount">0</h1>
-
-</div>
-
-<div class="card">
-
-<h3>Pending</h3>
-
-<h1 id="pendingCount">0</h1>
-
-</div>
-
-<div class="card">
-
-<h3>Revenue</h3>
-
-<h1 id="revenue">
-
-₹0
-
-</h1>
-
-</div>
-
-</div>
-
-<!-- Add Course -->
-
-<div class="box">
-
-<h2>Add New Course</h2>
-
-<input
-id="courseName"
-placeholder="Course Name">
-
-<input
-id="coursePrice"
-placeholder="Course Price">
-
-<input
-id="courseLink"
-placeholder="Google Drive Link">
-
-<input
-type="file"
-id="courseImage">
-
-<button id="addCourseBtn">
-
-Add Course
-
-</button>
-
-</div>
-
-<!-- Orders -->
-
-<div class="box">
-
-<h2>Recent Orders</h2>
-
-<div id="orders">
-
-<!-- Orders From Firebase -->
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<script type="module" src="app.js"></script>
-
+  <!-- LOGIN VIEW -->
+  <div id="admin-login-view">
+    <div class="login-card">
+      <h2 style="margin-bottom: 20px; text-align: center;">Admin Portal</h2>
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label>Admin Email</label>
+          <input type="email" id="admin-email" class="input-field" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="admin-password" class="input-field" required>
+        </div>
+        <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD LAYOUT -->
+  <div id="admin-main-view" class="admin-layout" style="display: none;">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h2>EduMarket Admin</h2>
+      <a class="nav-link active" onclick="switchPanel('dashboard')">Dashboard</a>
+      <a class="nav-link" onclick="switchPanel('courses')">Courses</a>
+      <a class="nav-link" onclick="switchPanel('orders')">Orders</a>
+      <a class="nav-link" onclick="switchPanel('users')">Users</a>
+      <a class="nav-link" onclick="switchPanel('settings')">Settings</a>
+      <a class="nav-link" id="admin-logout-btn" style="margin-top: auto; color: #ef4444;">Logout</a>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+
+      <!-- 1. DASHBOARD PANEL -->
+      <section id="panel-dashboard">
+        <h2 style="margin-bottom: 20px;">Dashboard Overview</h2>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <h4>Total Courses</h4>
+            <div class="value" id="metric-courses">0</div>
+          </div>
+          <div class="metric-card">
+            <h4>Total Orders</h4>
+            <div class="value" id="metric-orders">0</div>
+          </div>
+          <div class="metric-card">
+            <h4>Pending Orders</h4>
+            <div class="value" id="metric-pending" style="color: var(--warning);">0</div>
+          </div>
+          <div class="metric-card">
+            <h4>Total Revenue</h4>
+            <div class="value" id="metric-revenue" style="color: var(--success);">₹0</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. COURSES PANEL -->
+      <section id="panel-courses" style="display: none;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+          <h2>Manage Courses</h2>
+          <button class="btn" onclick="openAddCourseModal()">+ Add Course</button>
+        </div>
+        <div class="data-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Thumbnail</th>
+                <th>Course Name</th>
+                <th>Price</th>
+                <th>Drive Link</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="courses-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. ORDERS PANEL -->
+      <section id="panel-orders" style="display: none;">
+        <h2 style="margin-bottom: 20px;">Order Requests</h2>
+        <div class="data-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Course</th>
+                <th>Price</th>
+                <th>UTR</th>
+                <th>Screenshot</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="orders-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. USERS PANEL -->
+      <section id="panel-users" style="display: none;">
+        <h2 style="margin-bottom: 20px;">Registered Users</h2>
+        <div class="data-table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>User ID</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 5. SETTINGS PANEL -->
+      <section id="panel-settings" style="display: none;">
+        <h2 style="margin-bottom: 20px;">Platform Settings</h2>
+        <div style="background: white; padding: 24px; border-radius: 12px; max-width: 500px;">
+          <form id="settings-form">
+            <div class="form-group">
+              <label>PhonePe / Payment QR Image</label>
+              <input type="file" id="settings-qr-file" class="input-field" accept="image/*">
+            </div>
+            <div class="form-group">
+              <label>App Name</label>
+              <input type="text" id="settings-app-name" class="input-field" value="EduMarket">
+            </div>
+            <button type="submit" class="btn">Save Settings</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ADD / EDIT COURSE MODAL -->
+  <div id="course-modal" class="modal">
+    <div class="modal-content">
+      <h3 id="modal-course-title">Add New Course</h3>
+      <form id="course-form" style="margin-top: 16px;">
+        <input type="hidden" id="course-id">
+        <div class="form-group">
+          <label>Course Name</label>
+          <input type="text" id="course-name" class="input-field" required>
+        </div>
+        <div class="form-group">
+          <label>Price (₹)</label>
+          <input type="number" id="course-price" class="input-field" required>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="course-desc" class="input-field" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Google Drive Content Link</label>
+          <input type="url" id="course-drive-link" class="input-field" required>
+        </div>
+        <div class="form-group">
+          <label>Thumbnail Image</label>
+          <input type="file" id="course-file" class="input-field" accept="image/*">
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button type="submit" class="btn" style="flex:1;">Save Course</button>
+          <button type="button" class="btn btn-danger" onclick="closeCourseModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ORDER ACTION MODAL (APPROVE / ATTACH DRIVE LINK) -->
+  <div id="order-modal" class="modal">
+    <div class="modal-content">
+      <h3>Approve Order</h3>
+      <form id="order-approve-form" style="margin-top: 16px;">
+        <input type="hidden" id="approve-order-id">
+        <div class="form-group">
+          <label>Google Drive Access Link</label>
+          <input type="url" id="approve-drive-link" class="input-field" required>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button type="submit" class="btn btn-success" style="flex:1;">Confirm & Send Access</button>
+          <button type="button" class="btn btn-danger" onclick="closeOrderModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
 </body>
-
 </html>
